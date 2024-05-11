@@ -1,0 +1,54 @@
+version: "3.9"
+services:
+  wp_app:
+    depends_on:
+      - wp_db
+    image: wordpress:6.5.3-php8.2-fpm
+    container_name: wp_app
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - WORDPRESS_DB_HOST=wp_db:3306
+      - WORDPRESS_DB_USER=root
+      - WORDPRESS_DB_PASSWORD=root
+      - WORDPRESS_DB_NAME=wp_db
+    volumes:
+      - ./wordpress:/var/www/html
+    networks:
+      - app-network
+
+  wp_db:
+    container_name: wp_db
+    image: mysql:8.1
+    restart: always
+    env_file: .env
+    environment:
+      MYSQL_DATABASE: $MYSQL_DATABASE
+      YSQL_USER: $MYSQL_USER
+      YSQL_PASSWORD: $MYSQL_PASSWORD
+      YSQL_RANDOM_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db_data:/var/lib/mysql
+    command: '--default-authentication-plugin=mysql_native_password'
+    networks:
+      - app-network
+
+  wp_nginx:
+    container_name: wp_nginx
+    image: nginx:1.21-alpine
+    depends_on:
+      - wp_db
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./wordpress:/var/www/html
+      - ./nginx-conf:/etc/nginx/conf.d
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
