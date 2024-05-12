@@ -59,7 +59,7 @@ define( 'NONCE_SALT',       'S9{+5rHeSq6.hzyl@+VUazF51_-[Rdc^yy]WsbE9zzZUnsO[`T4
 
 //define( 'WP_HOME', 'https://clematisperfume.click' );
 //define( 'WP_SITEURL', 'https://clematisperfume.click' );
-define('FORCE_SSL_ADMIN', true);
+//define('FORCE_SSL_ADMIN', true);
 
 /**#@-*/
 
