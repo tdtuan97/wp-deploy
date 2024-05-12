@@ -47,9 +47,19 @@ services:
     volumes:
       - ./wordpress:/var/www/html
       - ./nginx-conf:/etc/nginx/conf.d
+      - ./certbot-etc:/etc/letsencrypt
     networks:
       - app-network
 
+  certbot:
+    depends_on:
+      - webserver
+    image: certbot/certbot
+    container_name: certbot
+    volumes:
+      - ./certbot-etc:/etc/letsencrypt
+      - ./wordpress:/var/www/html
+    command: certonly --webroot --webroot-path=/var/www/html --email vng.tuantd2@gmail.com --agree-tos --no-eff-email --staging -d clematisperfume.click -d www.clematisperfume.click
 networks:
   app-network:
     driver: bridge
