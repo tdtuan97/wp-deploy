@@ -42,7 +42,7 @@ services:
       - wp_db
     restart: unless-stopped
     ports:
-      - "9000:80"
+      - "80:80"
     volumes:
       - ./wordpress:/var/www/html
       - ./nginx-conf:/etc/nginx/conf.d
