@@ -53,7 +53,7 @@ services:
 
   certbot:
     depends_on:
-      - webserver
+      - wp_nginx
     image: certbot/certbot
     container_name: certbot
     volumes:
