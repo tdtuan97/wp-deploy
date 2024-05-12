@@ -57,8 +57,9 @@ define( 'SECURE_AUTH_SALT', 'pvah?VgI,A4z^K5g~Ls$IG{K/6gx!Fk0y9(<oUE2BN2duGkTu5*
 define( 'LOGGED_IN_SALT',   'mN~iAFVyo_u7OC?n[E>7L o&x&Y{O*x|;PjgiO]w{uxum9Vq(Ci5AzSl=tbBjjzc' );
 define( 'NONCE_SALT',       'S9{+5rHeSq6.hzyl@+VUazF51_-[Rdc^yy]WsbE9zzZUnsO[`T4X[47uA!hV@v4O' );
 
-define( 'WP_HOME', 'https://clematisperfume.click' );
-define( 'WP_SITEURL', 'https://clematisperfume.click' );
+//define( 'WP_HOME', 'https://clematisperfume.click' );
+//define( 'WP_SITEURL', 'https://clematisperfume.click' );
+define('FORCE_SSL_ADMIN', true);
 
 /**#@-*/
 
